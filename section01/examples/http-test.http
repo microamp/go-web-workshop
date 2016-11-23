@@ -1,0 +1,5 @@
+# Test resource that has been "PUT"
+GET https://http-methods.appspot.com/microamp/hi
+
+# https://http-methods.appspot.com/Hungary/?v=true
+GET https://http-methods.appspot.com/Hungary/?v=true

@@ -23,8 +23,23 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Hello, web")
 }
 
+func byeHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Bye, web")
+}
+
+type MyHandler struct{}
+
+func (handler *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Hello from MyHandler!")
+}
+
 func main() {
 	http.HandleFunc("/hello", helloHandler)
+	http.HandleFunc("/bye", byeHandler)
+
+	myHandler := &MyHandler{}
+	http.Handle("/hello2", myHandler)
+
 	err := http.ListenAndServe("127.0.0.1:8080", nil)
 	if err != nil {
 		log.Fatal(err)
